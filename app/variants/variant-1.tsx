@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Bebas_Neue, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 
@@ -12,7 +12,7 @@ export default function TablingosLanding() {
   const [scrolled, setScrolled] = useState(false);
 
   // Handle scroll for sticky CTA
-  useState(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 800);
     };
