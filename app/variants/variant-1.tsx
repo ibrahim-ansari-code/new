@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Bebas_Neue, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 
@@ -12,15 +12,16 @@ export default function TablingosLanding() {
   const [scrolled, setScrolled] = useState(false);
 
   // Handle scroll for sticky CTA
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 800);
+  }, []);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 800);
-    };
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
     }
-  }, []);
+  }, [handleScroll]);
 
   const openCalendly = () => {
     setShowCalendly(true);
